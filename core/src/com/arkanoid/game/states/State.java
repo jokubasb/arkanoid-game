@@ -1,4 +1,4 @@
-package com.arkanoid.game.States;
+package com.arkanoid.game.states;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,6 +9,7 @@ public abstract class State {
     protected OrthographicCamera cam;
     protected Vector3 mouse;
     protected GameStateManager gsm;
+    protected static Integer score;
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;
@@ -19,5 +20,5 @@ public abstract class State {
     protected abstract void handleImput();
     public abstract void update(float dt);
     public abstract void render(SpriteBatch sb);
-
+    public abstract void dispose();
 }

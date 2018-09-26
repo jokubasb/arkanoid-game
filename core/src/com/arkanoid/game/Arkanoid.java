@@ -1,7 +1,7 @@
 package com.arkanoid.game;
 
-import com.arkanoid.game.States.GameStateManager;
-import com.arkanoid.game.States.MenuState;
+import com.arkanoid.game.states.GameStateManager;
+import com.arkanoid.game.states.MenuState;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Arkanoid extends ApplicationAdapter {
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 540;
+	public static final int HEIGHT = 960;
 
 	public static final String TITLE = "Arkanoid";
 	private GameStateManager gsm;
