@@ -4,31 +4,44 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-public class Brick {
-    private Rectangle bounds;
-    private Texture brick;
-    private Vector3 position;
-    private boolean dead = false;
+public class Brick{
+
+    protected Vector3 position;
+    protected Vector3 velocity;
+    protected Rectangle bounds;
+    protected Texture texture;
+    protected boolean dead;
+
+    public Brick(){
+
+    }
 
     public Brick(int x, int y){
-        brick = new Texture("brick.png");
+        texture = new Texture("brick.png");
         position = new Vector3(x, y, 0);
-        bounds = new Rectangle(x, y, brick.getWidth(), brick.getHeight());
+        bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        dead = false;
     }
 
     public Brick(int x, int y, int colour){
-        //TODO png sprite'ai skirtingom spalvom
         String filename = "";
         switch (colour){
-            case 1 : filename = "blueBrick.png";
+            case 1 : filename = "brick_green.png";
             break;
-            default : filename = "brick.png";
+            case 2 : filename = "brick_red.png";
+            break;
+            case 3 : filename = "brick_violet.png";
+            break;
+            case 4 : filename = "brick_yellow.png";
+            break;
+            case 5 : filename = "brick.png";
             break;
         }
 
-        brick = new Texture(filename);
+        texture = new Texture(filename);
         position = new Vector3(x, y, 0);
-        bounds = new Rectangle(x, y, brick.getWidth(), brick.getHeight());
+        bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        dead = false;
     }
 
     public Rectangle getBounds() {
@@ -36,12 +49,13 @@ public class Brick {
     }
 
     public Texture getTexture() {
-        return brick;
+        return texture;
     }
 
     public Vector3 getPosition() {
         return position;
     }
+
 
     public boolean collides(Rectangle ball){
         if(bounds.overlaps(ball)){
@@ -51,16 +65,17 @@ public class Brick {
         return false;
     }
 
+
     public boolean isDead() {
         return dead;
     }
 
     public int getWidth(){
-        return this.brick.getWidth();
+        return this.texture.getWidth();
     }
 
     public int getHeight(){
-        return this.brick.getHeight();
+        return this.texture.getHeight();
     }
 
     @Override
@@ -68,5 +83,9 @@ public class Brick {
         return "Brick{" +
                 "dead=" + dead +
                 '}';
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }

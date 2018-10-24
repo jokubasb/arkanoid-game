@@ -5,21 +5,24 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-public class Ball {
-    private static final int GRAVITY = -15;
-    private Vector3 position;
-    private Vector3 velocity;
-    private Rectangle bounds;
-    private boolean dead;
+public class Ball{
+    protected Vector3 position;
+    protected Vector3 velocity;
+    protected Rectangle bounds;
+    protected Texture texture;
+    protected boolean dead;
 
-    private Texture ball;
     private Walls walls;
+
+    public Ball(){
+        this(Arkanoid.WIDTH/2, 130, 7, 7);
+    }
 
     public Ball(int x, int y){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(5,5,0);
-        ball = new Texture("ball.png");
-        bounds = new Rectangle(x, y, ball.getWidth(), ball.getHeight());
+        texture = new Texture("ball.png");
+        bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
         walls = new Walls();
         dead = false;
     }
@@ -27,8 +30,8 @@ public class Ball {
     public Ball(int x, int y, int vx, int vy){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(vx,vy,0);
-        ball = new Texture("ball.png");
-        bounds = new Rectangle(x, y, ball.getWidth(), ball.getHeight());
+        texture = new Texture("ball.png");
+        bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
         walls = new Walls();
         dead = false;
     }
@@ -57,13 +60,15 @@ public class Ball {
         return position;
     }
     public Texture getTexture() {
-        return ball;
+        return texture;
     }
     public void setPosition(Vector3 position) {
         this.position = position;
     }
+    //inkapsuliacija
     public void setVelocity(Vector3 velocity) {
-        this.velocity = velocity;
+        if(velocity.x != 0 && velocity.y != 0)
+            this.velocity = velocity;
     }
     public Rectangle getBounds() {
         return bounds;
@@ -83,5 +88,9 @@ public class Ball {
         return "Ball{" +
                 "dead=" + dead +
                 '}';
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }

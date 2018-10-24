@@ -6,18 +6,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-public class Platform {
-    private Vector3 position;
-    private Vector3 velocity;
-    private Rectangle bounds;
+public class Platform{
 
-    private Texture platform;
+    protected Vector3 position;
+    protected Vector3 velocity;
+    protected Rectangle bounds;
+    protected Texture texture;
 
     public Platform(int x, int y){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0,0,0);
-        platform = new Texture("platform.png");
-        bounds = new Rectangle(x, y, platform.getWidth(), platform.getHeight());
+        texture = new Texture("platform.png");
+        bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
     }
 
     public void update(float dt){
@@ -34,10 +34,18 @@ public class Platform {
     }
 
     public Texture getTexture() {
-        return platform;
+        return texture;
     }
+
+    public void setPosition(Vector3 position) {
+        if(position.x == 100)
+            this.position = position;
+    }
+
+
 
     public boolean collides(Rectangle ball){
         return bounds.overlaps(ball);
     }
+
 }
